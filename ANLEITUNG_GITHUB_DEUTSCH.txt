@@ -1,0 +1,34 @@
+AMTEQ Q-App - Schritt fuer Schritt GitHub APK Build
+
+A) ALTE DATEIEN IN GITHUB ERSETZEN
+1. GitHub Repository oeffnen.
+2. Oben auf Code klicken.
+3. Falls dort schon alte Dateien liegen: am einfachsten neues Repository nehmen ODER alles ueberschreiben.
+
+B) DATEIEN HOCHLADEN
+1. Code -> Add file -> Upload files anklicken.
+2. ZIP am PC entpacken.
+3. Den INHALT des entpackten Ordners in GitHub hineinziehen.
+   Es muessen sichtbar sein:
+   - android_app
+   - .github
+   - README.md
+   - README_DEUTSCH.txt
+   - ANLEITUNG_GITHUB_DEUTSCH.txt
+4. Unten auf Commit changes klicken.
+
+C) APK BAUEN
+1. Oben auf Actions klicken.
+2. Build APK anklicken.
+3. Warten bis gruener Haken kommt.
+4. Build anklicken.
+5. Ganz nach unten scrollen.
+6. Bei Artifacts AMTEQ-QApp-APK herunterladen.
+7. ZIP entpacken.
+8. APK aufs Handy kopieren und installieren.
+
+D) SERVER
+Die Handy-App verbindet automatisch mit:
+http://10.0.0.74:8756
+
+Am PC muss der Q-App-Server laufen. Das schwarze Server-Fenster offen lassen.
