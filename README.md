@@ -1,34 +1,22 @@
-# AMTEQ Q-App Android APK bauen
+# AMTEQ Q-App Android Build
 
-Diese Version der Android-App verbindet automatisch mit:
+Diese Version verbindet automatisch mit:
 
 `http://10.0.0.74:8756`
 
-Der PC-Server muss laufen und das Server-Fenster muss offen bleiben.
+Wichtig: Alte gespeicherte Adresse `http://10.0.0.21:8756` wird beim Start automatisch auf `10.0.0.74` korrigiert.
 
-## Ganz einfache Anleitung
+## APK bauen
 
-1. ZIP entpacken.
-2. GitHub Repository öffnen.
-3. Oben auf **Code** klicken.
-4. Auf **Add file** klicken.
-5. Auf **Upload files** klicken.
-6. Den kompletten Inhalt aus dem entpackten ZIP hochladen.
-   Wichtig: Nicht die ZIP-Datei selbst hochladen.
-7. Unten auf **Commit changes** klicken.
-8. Oben auf **Actions** klicken.
-9. Den Eintrag **Build APK** öffnen.
-10. Warten, bis ein grüner Haken erscheint.
-11. Den Build öffnen und ganz nach unten scrollen.
-12. Unter **Artifacts** die Datei **AMTEQ-QApp-APK** herunterladen.
-13. Die heruntergeladene ZIP entpacken.
-14. Die APK aufs Android-Handy kopieren und installieren.
+1. Alle Dateien dieses Ordners ins GitHub Repository hochladen.
+2. Auf **Actions** klicken.
+3. **Build APK** öffnen.
+4. Warten bis grüner Haken.
+5. Unten bei **Artifacts** die Datei **AMTEQ-QApp-APK** herunterladen.
+6. ZIP entpacken und APK am Handy installieren.
 
-## Wichtig
+## PC-Server
 
-Wenn am Handy weiterhin **Server nicht erreichbar** steht:
+Am PC muss der Q-App-Server laufen. Die Serveradresse muss im Serverfenster so erreichbar sein:
 
-- PC-Server-Fenster offen lassen.
-- Handy muss im gleichen WLAN/Firmennetz sein.
-- Der Server muss auf `http://10.0.0.74:8756` laufen.
-- Windows-Firewall darf Port `8756` nicht blockieren.
+`http://10.0.0.74:8756`

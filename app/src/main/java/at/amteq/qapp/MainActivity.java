@@ -20,7 +20,8 @@ import android.content.Intent;
 import android.webkit.ValueCallback;
 
 public class MainActivity extends Activity {
-    private static final String DEFAULT_URL = "http://10.0.0.21:8756";
+    private static final String DEFAULT_URL = "http://10.0.0.74:8756";
+    private static final String OLD_WRONG_URL = "http://10.0.0.21:8756";
     private static final int RETRY_MS = 3000;
     private WebView web;
     private ValueCallback<Uri[]> filePathCallback;
@@ -35,6 +36,12 @@ public class MainActivity extends Activity {
         }
         SharedPreferences sp = getSharedPreferences("qapp", MODE_PRIVATE);
         serverUrl = sp.getString("url", DEFAULT_URL);
+        // Wichtiger Fix: alte installierte Versionen haben 10.0.0.21 gespeichert.
+        // Diese Adresse ist nur der Excel-Dateiserver, nicht der Q-App-PC-Server.
+        if (serverUrl == null || serverUrl.trim().length() == 0 || serverUrl.equals(OLD_WRONG_URL)) {
+            serverUrl = DEFAULT_URL;
+            sp.edit().putString("url", DEFAULT_URL).apply();
+        }
         setupWebView();
         showLoadingScreen("Verbinde automatisch mit AMTEQ Q-App...", serverUrl);
         handler.postDelayed(() -> loadServer(), 350);
