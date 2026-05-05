@@ -1,11 +1,20 @@
 # AMTEQ Q-App Android FINAL 5045 Kamera
 
-Fixes:
-- SERVER_URL: http://10.0.0.21:5045/
-- Kamera-Permission
-- WebView-Dateiauswahl mit echter Kameraaufnahme ueber FileProvider
+SERVER_URL ist fest gesetzt auf:
 
-GitHub:
-- Inhalt dieses Ordners ins Repo hochladen.
-- GitHub Actions ausfuehren.
-- APK installieren.
+`http://10.0.0.21:5045/`
+
+Fixes:
+- Port 5045
+- Kamera-Permission
+- WebView-Dateiauswahl mit Kameraaufnahme ueber FileProvider
+- GitHub Action fix: Gradle 8.10.2 statt Gradle 9.x
+- AndroidX aktiviert
+- Android SDK 35 wird in der Action installiert
+
+## GitHub
+
+1. Inhalt dieses Ordners ins Repository hochladen.
+2. Actions starten oder Push abwarten.
+3. Artifact `AMTEQ-QApp-5045-debug-apk` herunterladen.
+4. APK am Handy installieren.
