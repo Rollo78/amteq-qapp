@@ -13,6 +13,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.core.content.FileProvider;
+
+import java.io.File;
+import java.io.IOException;
+
 public class MainActivity extends Activity {
     private static final String SERVER_URL = "http://10.0.0.21:5045/";
     private static final int REQ_FILE = 1001;
@@ -20,6 +25,7 @@ public class MainActivity extends Activity {
 
     private WebView webView;
     private ValueCallback<Uri[]> filePathCallback;
+    private Uri cameraImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,29 +51,42 @@ public class MainActivity extends Activity {
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
-            public boolean onShowFileChooser(WebView view, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
+            public boolean onShowFileChooser(WebView view, ValueCallback<Uri[]> callback, FileChooserParams params) {
                 if (MainActivity.this.filePathCallback != null) {
                     MainActivity.this.filePathCallback.onReceiveValue(null);
                 }
-                MainActivity.this.filePathCallback = filePathCallback;
+                MainActivity.this.filePathCallback = callback;
+                cameraImageUri = null;
 
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 Intent contentIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 contentIntent.addCategory(Intent.CATEGORY_OPENABLE);
                 contentIntent.setType("image/*");
 
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                try {
+                    File photoFile = File.createTempFile("qapp_photo_", ".jpg", getExternalCacheDir() != null ? getExternalCacheDir() : getCacheDir());
+                    cameraImageUri = FileProvider.getUriForFile(MainActivity.this, getPackageName() + ".fileprovider", photoFile);
+                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, cameraImageUri);
+                    cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                } catch (IOException e) {
+                    cameraIntent = null;
+                }
+
                 Intent chooser = new Intent(Intent.ACTION_CHOOSER);
                 chooser.putExtra(Intent.EXTRA_INTENT, contentIntent);
                 chooser.putExtra(Intent.EXTRA_TITLE, "Foto aufnehmen oder auswählen");
-                chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{cameraIntent});
+                if (cameraIntent != null) {
+                    chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{cameraIntent});
+                }
 
                 try {
                     startActivityForResult(chooser, REQ_FILE);
+                    return true;
                 } catch (Exception e) {
                     MainActivity.this.filePathCallback = null;
+                    cameraImageUri = null;
                     return false;
                 }
-                return true;
             }
         });
 
@@ -81,12 +100,16 @@ public class MainActivity extends Activity {
         if (requestCode == REQ_FILE) {
             if (filePathCallback == null) return;
             Uri[] results = null;
-            if (resultCode == RESULT_OK && data != null) {
-                Uri uri = data.getData();
-                if (uri != null) results = new Uri[]{uri};
+            if (resultCode == RESULT_OK) {
+                if (data != null && data.getData() != null) {
+                    results = new Uri[]{data.getData()};
+                } else if (cameraImageUri != null) {
+                    results = new Uri[]{cameraImageUri};
+                }
             }
             filePathCallback.onReceiveValue(results);
             filePathCallback = null;
+            cameraImageUri = null;
         }
     }
 
