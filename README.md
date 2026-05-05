@@ -1,22 +1,23 @@
-# AMTEQ Q-App Android Build
+# AMTEQ Q-App Android
 
-Diese Version verbindet automatisch mit:
+Diese Android-App oeffnet fest den internen AMTEQ Q-App Server:
 
-`http://10.0.0.74:8756`
+`http://10.0.0.21:5022/`
 
-Wichtig: Alte gespeicherte Adresse `http://10.0.0.21:8756` wird beim Start automatisch auf `10.0.0.74` korrigiert.
+## APK ueber GitHub bauen
 
-## APK bauen
+1. Diesen Ordner in ein GitHub-Repository hochladen.
+2. In GitHub auf **Actions** gehen.
+3. Workflow **Build AMTEQ Q-App APK** starten.
+4. Danach das Artefakt **AMTEQ-QApp-debug-apk** herunterladen.
+5. APK am Handy installieren.
 
-1. Alle Dateien dieses Ordners ins GitHub Repository hochladen.
-2. Auf **Actions** klicken.
-3. **Build APK** öffnen.
-4. Warten bis grüner Haken.
-5. Unten bei **Artifacts** die Datei **AMTEQ-QApp-APK** herunterladen.
-6. ZIP entpacken und APK am Handy installieren.
+## Voraussetzungen am Handy
 
-## PC-Server
+- Handy muss im Firmen-WLAN/VPN sein.
+- Android muss die Installation aus unbekannten Quellen erlauben.
+- Der Server `10.0.0.21:5022` muss erreichbar sein.
 
-Am PC muss der Q-App-Server laufen. Die Serveradresse muss im Serverfenster so erreichbar sein:
+## Server
 
-`http://10.0.0.74:8756`
+Die Excel-Dateien werden nicht direkt vom Handy gelesen. Die App spricht mit dem Server auf 10.0.0.21. Der Server liest den Windows-Netzwerkordner.
