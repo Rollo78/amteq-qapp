@@ -1,23 +1,35 @@
-# AMTEQ Q-App Android
+# AMTEQ Q-App Android - Port 5045
 
-Diese Android-App oeffnet fest den internen AMTEQ Q-App Server:
+Diese Version verbindet sich fest mit:
 
-`http://10.0.0.21:5022/`
+```text
+http://10.0.0.21:5045/
+```
 
-## APK ueber GitHub bauen
+## GitHub Build
 
-1. Diesen Ordner in ein GitHub-Repository hochladen.
-2. In GitHub auf **Actions** gehen.
-3. Workflow **Build AMTEQ Q-App APK** starten.
-4. Danach das Artefakt **AMTEQ-QApp-debug-apk** herunterladen.
-5. APK am Handy installieren.
+1. ZIP entpacken.
+2. Den gesamten Inhalt dieses Ordners in dein GitHub-Repository hochladen.
+   Wichtig: `.github`, `app`, `build.gradle` und `settings.gradle` muessen direkt im Repo-Root liegen.
+3. In GitHub auf **Actions** gehen.
+4. Workflow **Build AMTEQ Q-App APK** starten.
+5. Artifact **AMTEQ-QApp-5045-debug-apk** herunterladen.
+6. APK am Handy installieren.
 
-## Voraussetzungen am Handy
+## Wichtig
 
-- Handy muss im Firmen-WLAN/VPN sein.
-- Android muss die Installation aus unbekannten Quellen erlauben.
-- Der Server `10.0.0.21:5022` muss erreichbar sein.
+- Server muss auf `10.0.0.21:5045` laufen.
+- Handy muss den Server im Firmennetz/VPN erreichen.
+- Android muss Installation aus unbekannten Quellen erlauben.
 
-## Server
+## Geaenderte Datei
 
-Die Excel-Dateien werden nicht direkt vom Handy gelesen. Die App spricht mit dem Server auf 10.0.0.21. Der Server liest den Windows-Netzwerkordner.
+```text
+app/src/main/java/at/amteq/qapp/MainActivity.java
+```
+
+Dort steht:
+
+```java
+private static final String SERVER_URL = "http://10.0.0.21:5045/";
+```
