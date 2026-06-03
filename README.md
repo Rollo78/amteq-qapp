@@ -1,4 +1,4 @@
-# AMTEQ Q-App Android FINAL 5045 Kamera
+# AMTEQ Produktions-App Android
 
 SERVER_URL ist fest gesetzt auf:
 
@@ -18,3 +18,9 @@ Fixes:
 2. Actions starten oder Push abwarten.
 3. Artifact `AMTEQ-QApp-5045-debug-apk` herunterladen.
 4. APK am Handy installieren.
+
+
+Produktions-App separat installierbar:
+- applicationId: at.amteq.produktion
+- App-Name: AMTEQ Produktion
+- überschreibt die Q-App nicht.

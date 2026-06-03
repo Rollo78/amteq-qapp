@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'at.amteq.qapp'
+    namespace "at.amteq.produktion"
     compileSdk 35
 
     defaultConfig {
-        applicationId 'at.amteq.qapp'
+        applicationId "at.amteq.produktion"
         minSdk 23
         targetSdk 35
         versionCode 2
