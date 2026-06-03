@@ -7,7 +7,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
         android:label="AMTEQ Produktion"
-        android:icon="@drawable/amteq_qapp_icon">
+        android:icon="@drawable/amteq_production_icon">
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
