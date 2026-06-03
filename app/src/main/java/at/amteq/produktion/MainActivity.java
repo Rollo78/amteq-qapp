@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
 
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 try {
-                    File photoFile = File.createTempFile("qapp_photo_", ".jpg", getExternalCacheDir() != null ? getExternalCacheDir() : getCacheDir());
+                    File photoFile = File.createTempFile("produktion_photo_", ".jpg", getExternalCacheDir() != null ? getExternalCacheDir() : getCacheDir());
                     cameraImageUri = FileProvider.getUriForFile(MainActivity.this, getPackageName() + ".fileprovider", photoFile);
                     cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, cameraImageUri);
                     cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
